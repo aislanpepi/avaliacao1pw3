@@ -3,6 +3,8 @@ package org.example.dao;
 import jakarta.persistence.EntityManager;
 import org.example.model.Aluno;
 
+import java.util.List;
+
 public class AlunoDAO {
     private EntityManager em;
 
@@ -21,5 +23,10 @@ public class AlunoDAO {
 
     public void deletar(String nome){
         this.em.remove(buscarPorNome(nome));
+    }
+
+    public List<Aluno> buscarTodos(){
+        String jpql  = "SELECT a FROM Aluno a";
+        return em.createQuery(jpql,Aluno.class).getResultList();
     }
 }
