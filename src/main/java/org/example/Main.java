@@ -7,6 +7,7 @@ import org.example.model.Aluno;
 import org.example.util.JPAUtil;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -122,8 +123,25 @@ public class Main {
                         System.err.println("Aluno nao encontrado!");
                     }
 
-                case 5:
+                    em.getTransaction().commit();
 
+                    break;
+                    
+                case 5:
+                    System.out.println("Exibindo todos os alunos:");
+                    List<Aluno> alunos = dao.buscarTodos();
+
+                    for(Aluno a : alunos){
+                        double media = (a.getNota1().doubleValue() + a.getNota2().doubleValue() + a.getNota3().doubleValue()) / 3;
+                        System.out.printf("\nNome: %s\n",a.getNome());
+                        System.out.printf("Email: %s\n",a.getEmail());
+                        System.out.printf("RA: %s\n",a.getRa());
+                        System.out.printf("Notas: %.2f - %.2f - %.2f\n",a.getNota1(),a.getNota2(),a.getNota3());
+                        System.out.printf("Media: %.2f\n",media);
+                        if(media >= 6) System.out.print("Situação: Aprovado\n");
+                        if(media < 4) System.out.print("Situação: Reprovado\n");
+                        if(media >= 4 && media <= 6) System.out.print("Situação: Recuperação\n");
+                    }
             }
         }
     }
