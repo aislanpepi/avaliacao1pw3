@@ -18,7 +18,7 @@ public class Main {
         int op = 0;
 
         while(op != 6) {
-            System.out.println("** CADASTRO DE ALUNOS **\n");
+            System.out.println("\n** CADASTRO DE ALUNOS **\n");
             System.out.println("1 - Cadastrar aluno");
             System.out.println("2 - Excluir aluno");
             System.out.println("3 - Alterar aluno");
