@@ -39,11 +39,26 @@ public class Main {
                     System.out.print("Digite o email: ");
                     aluno.setEmail(sc.nextLine());
                     System.out.print("Digite a nota 1: ");
-                    aluno.setNota1(BigDecimal.valueOf(Long.parseLong(sc.nextLine())));
+                    BigDecimal n = BigDecimal.valueOf(Double.parseDouble(sc.nextLine()));
+                    while(n.doubleValue() < 0 || n.doubleValue() > 10){
+                        System.out.print("Nota invalida. Digite novamente: ");
+                        n = BigDecimal.valueOf(Double.parseDouble(sc.nextLine()));
+                    }
+                    aluno.setNota1(n);
                     System.out.print("Digite a nota 2: ");
-                    aluno.setNota2(BigDecimal.valueOf(Long.parseLong(sc.nextLine())));
+                    n = BigDecimal.valueOf(Double.parseDouble(sc.nextLine()));
+                    while(n.doubleValue() < 0 || n.doubleValue() > 10){
+                        System.out.print("Nota invalida. Digite novamente: ");
+                        n = BigDecimal.valueOf(Double.parseDouble(sc.nextLine()));
+                    }
+                    aluno.setNota2(n);
                     System.out.print("Digite a nota 3: ");
-                    aluno.setNota3(BigDecimal.valueOf(Long.parseLong(sc.nextLine())));
+                    n = BigDecimal.valueOf(Double.parseDouble(sc.nextLine()));
+                    while(n.doubleValue() < 0 || n.doubleValue() > 10){
+                        System.out.print("Nota invalida. Digite novamente: ");
+                        n = BigDecimal.valueOf(Double.parseDouble(sc.nextLine()));
+                    }
+                    aluno.setNota3(n);
 
                     em.getTransaction().begin();
                     dao.cadastrar(aluno);
@@ -140,7 +155,7 @@ public class Main {
                         System.out.printf("Media: %.2f\n",media);
                         if(media >= 6) System.out.print("Situação: Aprovado\n");
                         if(media < 4) System.out.print("Situação: Reprovado\n");
-                        if(media >= 4 && media <= 6) System.out.print("Situação: Recuperação\n");
+                        if(media >= 4 && media < 6) System.out.print("Situação: Recuperação\n");
                     }
             }
         }
